@@ -21,4 +21,4 @@ When you open the Burp Suite again you will see an output like this;
 
 If you already used the extension and the headers.txt file is from extension than you don't need to worry but if it is your first time you need to transfer the file in order for the extension work properly.
 
-(I know that GUI sucks but also coding a GUI sucks too)
+(I know that this GUI sucks but also coding a GUI sucks too)
