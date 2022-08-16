@@ -20,6 +20,6 @@ When you open the Burp Suite again you will see an output like this;
 ![image](https://user-images.githubusercontent.com/68515706/184891666-1e8af9c3-5138-4bd2-a2d4-ca42fb6a11eb.png)
 
 
-If you already used the extension and the headers.txt file is from extension than you don't need to worry but if it is your first time you need to transfer the file in order for the extension work properly.
+If you already used the extension and if the headers.txt is from extension then you don't need to worry about it but if it is your first time using this extension; you need to transfer the file in order to extension work properly.
 
 (I know that this GUI sucks but also coding a GUI sucks too)
