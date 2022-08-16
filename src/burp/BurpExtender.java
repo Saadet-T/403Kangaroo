@@ -1,18 +1,13 @@
 package burp;
 
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.OpenOption;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +21,6 @@ import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
 import com.kitfox.svg.Font;
-import com.kitfox.svg.Path;
 
 public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 
@@ -42,7 +36,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 	private List<JMenuItem> menu;
 	public List<String> deneme = new ArrayList<String>();;
 	boolean atama = false;
-	Font bigFont = new Font();
+
 
 	@Override
 	public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) {
@@ -51,6 +45,35 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 		this.callbacks.setExtensionName("403Kangaroo");
 		this.callbacks.registerHttpListener(this);
 		this.debug = new PrintWriter(callbacks.getStdout(), true);
+		String[] headerswrite = {"X-Forwarded",
+	            "X-Forwarded-By",
+	            "X-Forwarded-For",
+	            "X-Forwarded-For-Original",
+	            "X-Forwarder-For",
+	            "X-Forwarded-Server",
+	            "X-Forward-For",
+	            "Forwarded-For",
+	            "Forwarded-For-Ip",
+	            "X-Custom-IP-Authorization",
+	            "X-Originating-IP",
+	            "X-Remote-IP",
+	            "X-Remote-Addr",
+	            "X-Trusted-IP",
+	            "X-Requested-By",
+	            "X-Requested-For",
+	            "X-Host",
+	            "X-Original-Remote-Addr",
+	            "X-Originating-IP",
+	            "X-Real-Ip",
+	            "X-True-IP",
+	            "Client-IP",
+	            "Redirect",
+	            "Referer",
+	            "X-Client-IP",
+	            "X-True-IP"};
+		String[] valueswrite = {"127.0.0.1",
+	            "0.0.0.0",
+	            "localhost"};
 
 		SwingUtilities.invokeLater(new Runnable() {
 
@@ -61,7 +84,51 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 				textArea = new JTextArea(20,2);
 				File fileHeaders = new File("headers.txt");
 				String pathHeaders = fileHeaders.getAbsolutePath();
-				debug.println(pathHeaders);
+//				if(fileHeaders.exists()==true) {
+//					callbacks.printError(("If you already used this extension you can ignore this error,\n however if this is your first time using;you have a headers.txt in "+pathHeaders+".\nYou need to transfer this file in another location for this extension to work."));
+//				}
+				if(fileHeaders.exists()==false) {
+					try {
+						BufferedWriter writer = new BufferedWriter(new FileWriter(pathHeaders));
+						writer.write(headerswrite[0]+"\n");
+					for(int i=1;i<(headerswrite.length);i++) {
+				
+						writer.append(headerswrite[i]+"\n");
+						//debug.println(headerswrite[i]);
+						
+					} 	
+					writer.close();
+					}
+					catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					File filevalues = new File("values.txt");
+					String pathvalues = filevalues.getAbsolutePath();
+//					if(filevalues.exists()==true) {
+//						callbacks.printError(("\n\nIf you already used this extension you can ignore this error,\n however if this is your first time using;you have a headers.txt in "+pathvalues+".\nYou need to transfer this file in another location for this extension to work."));
+//					}
+					if(filevalues.exists()==false) {
+						try {
+							BufferedWriter writer = new BufferedWriter(new FileWriter(pathvalues));
+							writer.write(valueswrite[0]+"\n");
+						for(int i=1;i<(valueswrite.length);i++) {
+					
+							writer.append(valueswrite[i]+"\n");
+							//debug.println(valueswrite[i]);
+							
+						} 	
+						writer.close();
+						}
+						catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+
+				}
+				
+				
 			GroupLayout layout = new GroupLayout(panel);
 				panel.setLayout(layout);
 				layout.setHorizontalGroup(layout.createSequentialGroup().addComponent(textArea));
@@ -74,10 +141,13 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 
 			}
 
-		});
+			}});
 	}
 
 
+	
+
+	
 	public void processHttpMessage(int toolFlag, boolean messageIsRequest, IHttpRequestResponse messageInfo) {
 		URL url = messageInfo.getUrl();
 		url.toString();
@@ -109,22 +179,27 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 						File fileValues = new File("values.txt");
 						String pathValues = fileValues.getAbsolutePath();
 						String newPathValues = pathValues.replaceAll("\\\\", "\\\\\\\\");
-						debug.println(newPathValues);
+						//debug.println(newPathValues);
 						List<String> allValues = Files.readAllLines(Paths.get(newPathValues));
 						String[] valueArray = new String[allValues.size() * 2];
 						allValues.toArray(valueArray);
-						for (int i = 0; i <= (allLines.size()); i++) {
+						
 							for (int j = 0; j <= (allValues.size()); j++) {
 								IRequestInfo request = this.helpers.analyzeRequest(messageInfo.getHttpService(),
 										messageInfo.getRequest());
 								List<String> newHeaders = request.getHeaders();
-								newHeaders.add(6, headerArray[i] + ":" + valueArray[j]);
+								   for (int i=0;i<=(allLines.size());i++) {
+							            newHeaders.add(6,headerArray[i]+":"+valueArray[j]);
+							            }
 								Thread.sleep(250);
+								//debug.println(newHeaders);
 								byte[] newRequest = this.helpers.buildHttpMessage(newHeaders, null);
 								messageInfo.setRequest(newRequest);
-								newHeaders.remove(headerArray[i] + ":" + valueArray[j]);
+								for (int i=0;i<=(allLines.size());i++) {
+									newHeaders.remove(headerArray[i] + ":" + valueArray[j]);
+						            }
 								byte[] newRequesta = this.helpers.buildHttpMessage(newHeaders, null);
-								debug.println(new String(newRequest));
+								//debug.println(new String(newRequest));
 								messageInfo.setRequest(newRequesta);
 								IHttpRequestResponse resp = callbacks.makeHttpRequest(messageInfo.getHttpService(),
 										newRequest);
@@ -132,14 +207,14 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 								String response = new String(readme_response);
 								String[] responseArray = response.split("\n");
 								if (responseArray[0].contains("200")) {
-									textArea.append(url + " || This header =>" + headerArray[i] + ":" + valueArray[j]
+									textArea.append(url + " || This header =>"  + ":" + valueArray[j]
 											+ " Returns 200!!\n");
 									a = a + 1;
 
 								}
 
 							}
-						}
+						
 						if (a == 0) {
 							textArea.append(url + " || This header and value failed\n");
 						}
@@ -153,7 +228,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 					}
 				}
 			}
-		}
+			}
 	}
 
 	@Override
