@@ -14,5 +14,11 @@ This extension basically take the requests sent from proxy tab of Burp and if th
 ![image](https://user-images.githubusercontent.com/68515706/184890408-a9753df7-9ae4-49c0-81b4-9fea71aa4666.png)
 
 When you open the Burp Suite again you will see an output like this;
+
+
 ![image](https://user-images.githubusercontent.com/68515706/184891666-1e8af9c3-5138-4bd2-a2d4-ca42fb6a11eb.png)
+
+
 If you already used the extension and the headers.txt file is from extension than you don't need to worry but if it is your first time you need to transfer the file in order for the extension work properly.
+
+(I know that GUI sucks but also coding a GUI sucks too)
