@@ -5,7 +5,6 @@ When you add .jar to Burp Extender it will open and write 2 txt files in Burp Su
 This extension basically take the requests sent from proxy tab of Burp and if the request returns 401 or 403 then it takes all of the headers from headers.txt and in a for loop it will take one of the values from values.txt one at a time. 
 
 ![image](https://user-images.githubusercontent.com/68515706/184891102-1eeb99df-7b1d-4993-becd-2f5ae4ffea82.png)
-![image](https://user-images.githubusercontent.com/68515706/184891166-796d11d3-ef90-4d5b-bbfa-6795c83cf65b.png)
  
  
  It will print out whether the target got bypassed or not.
