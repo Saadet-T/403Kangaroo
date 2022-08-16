@@ -6,7 +6,11 @@ This extension basically take the requests sent from proxy tab of Burp and if th
 
 ![image](https://user-images.githubusercontent.com/68515706/184891102-1eeb99df-7b1d-4993-becd-2f5ae4ffea82.png)
 ![image](https://user-images.githubusercontent.com/68515706/184891166-796d11d3-ef90-4d5b-bbfa-6795c83cf65b.png)
+ 
+ 
  It will print out whether the target got bypassed or not.
+ 
+ 
 ![image](https://user-images.githubusercontent.com/68515706/184890408-a9753df7-9ae4-49c0-81b4-9fea71aa4666.png)
 
 When you open the Burp Suite again you will see an output like this;
