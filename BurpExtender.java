@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOError;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
@@ -45,7 +46,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 		this.callbacks.setExtensionName("403Kangaroo");
 		this.callbacks.registerHttpListener(this);
 		this.debug = new PrintWriter(callbacks.getStdout(), true);
-		String[] headerswrite = {"X-Forwarded",
+		String[] headerswrite = {"X-Forwarded",//headers to write in txt
 	            "X-Forwarded-By",
 	            "X-Forwarded-For",
 	            "X-Forwarded-For-Original",
@@ -71,7 +72,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 	            "Referer",
 	            "X-Client-IP",
 	            "X-True-IP"};
-		String[] valueswrite = {"127.0.0.1",
+		String[] valueswrite = {"127.0.0.1",//values to write in txt
 	            "0.0.0.0",
 	            "localhost"};
 
@@ -110,7 +111,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 					writer.close();
 					}
 					catch (IOException e) {
-						// TODO Auto-generated catch block
+						callbacks.printError("Something is going wrong while writing into files; you can manually copy headers.txt file from github and paste it to "+ pathHeaders);
 						e.printStackTrace();
 					}
 					File filevalues = new File("values.txt");
@@ -131,7 +132,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 						writer.close();
 						}
 						catch (IOException e) {
-							// TODO Auto-generated catch block
+							callbacks.printError("Something is going wrong while writing into files; you can manually copy values.txt file from github and paste it to "+ pathvalues);
 							e.printStackTrace();
 						}
 
@@ -154,31 +155,31 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 		if (messageIsRequest) {
 			if (this.callbacks.TOOL_PROXY == toolFlag) {
 				IRequestInfo requestMother = this.helpers.analyzeRequest(messageInfo.getHttpService(),
-						messageInfo.getRequest());
-				List<String> motherHeaders = requestMother.getHeaders();
+						messageInfo.getRequest());//Getting the request information send from proxy tool
+				List<String> motherHeaders = requestMother.getHeaders();//Getting the original headers from proxy request aka mother request
 				byte[] motherRequest = this.helpers.buildHttpMessage(motherHeaders, null);
-				messageInfo.setRequest(motherRequest);
+				messageInfo.setRequest(motherRequest);//setting the request and senging the exact same request from mother request to get response information
 				IHttpRequestResponse motherResp = callbacks.makeHttpRequest(messageInfo.getHttpService(),
 						motherRequest);
-				byte[] mother_response = motherResp.getResponse();
-				String motheResponse = new String(mother_response);
-				String[] responseArrayMother = motheResponse.split("\n");
+				byte[] mother_response = motherResp.getResponse();//getting response
+				String motheResponse = new String(mother_response);//changing bytes to string
+				String[] responseArrayMother = motheResponse.split("\n");//splitting the string line by line
 
-				if (responseArrayMother[0].contains("403") || responseArrayMother[0].contains("401")) {
+				if (responseArrayMother[0].contains("403") || responseArrayMother[0].contains("401")) {//controlling the first line of the request whether it contains 403 or 401
 					
 					try {
 
 						int a = 0;
-						File fileHeaders = new File("headers.txt");
+						File fileHeaders = new File("headers.txt");//(This is because if you want  add some extra headers in txt then extension will add them into the request)
 						String pathHeaders = fileHeaders.getAbsolutePath();
-						String newPath = pathHeaders.replaceAll("\\\\", "\\\\\\\\");
+						String newPath = pathHeaders.replaceAll("\\\\", "\\\\\\\\");//Duplicating the path names backslashes for windows users
 						//debug.println(newPath);
-						List<String> allLines = Files.readAllLines(Paths.get(newPath));
+						List<String> allLines = Files.readAllLines(Paths.get(newPath));//reading headers.txt files and making them into a list
 						String[] headerArray = new String[allLines.size() * 2];
-						allLines.toArray(headerArray);
+						allLines.toArray(headerArray);//Turning header list into an Array
 						File fileValues = new File("values.txt");
 						String pathValues = fileValues.getAbsolutePath();
-						String newPathValues = pathValues.replaceAll("\\\\", "\\\\\\\\");
+						String newPathValues = pathValues.replaceAll("\\\\", "\\\\\\\\");//Same thing except this time is for value headers.
 						//debug.println(newPathValues);
 						List<String> allValues = Files.readAllLines(Paths.get(newPathValues));
 						String[] valueArray = new String[allValues.size() * 2];
@@ -186,28 +187,28 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 						
 							for (int j = 0; j <= (allValues.size()); j++) {
 								IRequestInfo request = this.helpers.analyzeRequest(messageInfo.getHttpService(),
-										messageInfo.getRequest());
+										messageInfo.getRequest());//Because why not?
 								List<String> newHeaders = request.getHeaders();
 								   for (int i=0;i<=(allLines.size());i++) {
-							            newHeaders.add(6,headerArray[i]+":"+valueArray[j]);
+							            newHeaders.add(6,headerArray[i]+":"+valueArray[j]);//Adding all headers.txt into the headers
 							            }
 								Thread.sleep(250);
 								//debug.println(newHeaders);
 								byte[] newRequest = this.helpers.buildHttpMessage(newHeaders, null);
-								messageInfo.setRequest(newRequest);
+								messageInfo.setRequest(newRequest);//Setting the request then removing headers
 								for (int i=0;i<=(allLines.size());i++) {
-									newHeaders.remove(headerArray[i] + ":" + valueArray[j]);
+									newHeaders.remove(headerArray[i] + ":" + valueArray[j]);//removing headers with current j value and preparing them for the next j value
 						            }
 								byte[] newRequesta = this.helpers.buildHttpMessage(newHeaders, null);
 								//debug.println(new String(newRequest));
-								messageInfo.setRequest(newRequesta);
+								messageInfo.setRequest(newRequesta);//setting request without headers for after use (I guess i don't know i just thought it would work and it worked so i let it rest in peace here)
 								IHttpRequestResponse resp = callbacks.makeHttpRequest(messageInfo.getHttpService(),
 										newRequest);
 								byte[] readme_response = resp.getResponse();
-								String response = new String(readme_response);
+								String response = new String(readme_response);//Getting the response from newRequest (The one we added headers)
 								String[] responseArray = response.split("\n");
-								if (responseArray[0].contains("200")) {
-									textArea.append(url + " || This header =>"  + ":" + valueArray[j]
+								if (responseArray[0].contains("200")) {//Controlling if the response contains 200
+									textArea.append(url + " || This value =>"  + ":" + valueArray[j]
 											+ " Returns 200!!\n");
 									a = a + 1;
 
