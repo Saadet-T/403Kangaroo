@@ -165,7 +165,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 				String motheResponse = new String(mother_response);//changing bytes to string
 				String[] responseArrayMother = motheResponse.split("\n");//splitting the string line by line
 
-				if (responseArrayMother[0].contains("403") || responseArrayMother[0].contains("401")) {//controlling the first line of the request whether it contains 403 or 401
+				if (responseArrayMother[0].contains("403") || responseArrayMother[0].contains("401")) {//controlling the first line of the response whether it contains 403 or 401
 					
 					try {
 
