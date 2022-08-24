@@ -34,7 +34,7 @@ When you open the Burp Suite again you will see an output like this (or when you
 
 If you already used the extension and if the headers.txt is from extension then you don't need to worry about it but if it is your first time using this extension and if you are not the one who copy the headers and values txt files for this extension to work ; then you need to transfer the file in order to extension work properly.
 
-There is 2 main problems which may occur and you can get over them with this;
+There is 2 main problems which may occur and you can get over them with these;
 
 1.You already have an headers.txt or values.txt in path which extension is going to use then you need to move this files in order to extension can write this directory.
 
