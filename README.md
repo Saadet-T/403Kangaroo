@@ -3,7 +3,7 @@
 
 USAGE;
 
-First of all you need to send request from your proxy or repeater tab to extension. And then you need to forward or send(you know it depends on whether you use proxy or repeater) the request from burp suite because the extension won't be able to catch the request unless it is sent. 
+First of all you need to send request from your proxy or repeater tab to extension. And then you need to forward or send(It depends on whether you use proxy or repeater) the request from burp suite because the extension won't be able to catch the request unless it is sent. 
 
 ![image](https://user-images.githubusercontent.com/68515706/186407101-dfa0f991-66d7-4f4c-bbc8-d133cc87fc5e.png)
 
