@@ -9,6 +9,8 @@ First of all you need to send request from your proxy or repeater tab to extensi
 
 ![image](https://user-images.githubusercontent.com/68515706/186407201-9a072201-1648-4126-88b8-13366798b6ba.png)
 
+OR
+
 ![image](https://user-images.githubusercontent.com/68515706/186407591-2706dd8d-b96a-4d64-a759-3358900fb95b.png)
 
 
