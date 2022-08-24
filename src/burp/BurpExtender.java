@@ -74,7 +74,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab,IContext
 	            "Redirect",
 	            "Referer",
 	            "X-Client-IP",
-	            "X-True-IP"};
+	            "True-IP"};
 		String[] valueswrite = {"127.0.0.1",//values to write in txt
 	            "0.0.0.0",
 	            "localhost"};
