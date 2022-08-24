@@ -12,14 +12,14 @@ After that the extension will take the request send it again to confirm whether 
 When you load the extension for the first time it will open a headers.txt file and write the headers in there and does the same thing for values. So if you want to add another value or header you can add it to txt files and from then extension will include that values and headers too.
 
 ![image](https://user-images.githubusercontent.com/68515706/186393455-983bfcd0-c4d7-47b4-8f38-eec98e2f9fad.png)
-
+![image](https://user-images.githubusercontent.com/68515706/186393386-09050b7a-40e6-4c40-ab21-18951aad95bb.png)
  
  
  It will print out whether the target got bypassed or not.
  
  
 ![image](https://user-images.githubusercontent.com/68515706/184893331-94704641-090d-4af5-8ec8-61869cba1d12.png)
-![image](https://user-images.githubusercontent.com/68515706/186393386-09050b7a-40e6-4c40-ab21-18951aad95bb.png)
+
 
 
 When you open the Burp Suite again you will see an output like this;
