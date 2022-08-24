@@ -217,7 +217,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab,IContext
 						            }
 								byte[] newRequesta = this.helpers.buildHttpMessage(newHeaders, null);
 								//debug.println(new String(newRequest));
-								messageInfo.setRequest(newRequesta);//setting request without headers for after use (I guess i don't know i just thought it would work and it worked so i let it rest in peace here)
+								messageInfo.setRequest(newRequesta);//setting request without headers for after use (I guess i am not sure i just thought it would work and it worked so i let it rest in peace here)
 								IHttpRequestResponse resp = callbacks.makeHttpRequest(messageInfo.getHttpService(),
 										newRequest);
 								byte[] readme_response = resp.getResponse();
