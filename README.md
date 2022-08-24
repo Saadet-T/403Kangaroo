@@ -25,6 +25,7 @@ After that the extension will take the request and send it again to confirm whet
  
 ![image](https://user-images.githubusercontent.com/68515706/184893331-94704641-090d-4af5-8ec8-61869cba1d12.png)
 
+ADDENDUM;
 
 When you open the Burp Suite again you will see an output like this (or when you unload and reload the extension) ;
 
