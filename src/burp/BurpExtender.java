@@ -205,14 +205,14 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab,IContext
 								IRequestInfo request = this.helpers.analyzeRequest(messageInfo.getHttpService(),
 										messageInfo.getRequest());//Because why not?
 								List<String> newHeaders = request.getHeaders();
-								   for (int i=0;i<=(allLines.size());i++) {
+								   for (int i=0;i<(allLines.size());i++) {
 							            newHeaders.add(6,headerArray[i]+":"+valueArray[j]);//Adding all headers.txt into the headers
 							            }
 								Thread.sleep(250);
 								//debug.println(newHeaders);
 								byte[] newRequest = this.helpers.buildHttpMessage(newHeaders, null);
 								messageInfo.setRequest(newRequest);//Setting the request then removing headers
-								for (int i=0;i<=(allLines.size());i++) {
+								for (int i=0;i<(allLines.size());i++) {
 									newHeaders.remove(headerArray[i] + ":" + valueArray[j]);//removing headers with current j value and preparing them for the next j value
 						            }
 								byte[] newRequesta = this.helpers.buildHttpMessage(newHeaders, null);
