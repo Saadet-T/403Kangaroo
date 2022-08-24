@@ -14,11 +14,11 @@ First of all you need to send request from your proxy or repeater tab to extensi
 
 After that the extension will take the request and send it again to confirm whether the response code (403 || 401) or not. Then It will add the headers and values and send a request for each value .
 
+![image](https://user-images.githubusercontent.com/68515706/186418063-28cdc3e0-c709-4187-94f2-b0720a41e76e.png)
 
-![image](https://user-images.githubusercontent.com/68515706/186397972-0b3cbc53-096c-441d-bee9-927a4a4c9020.png)
 
-![image](https://user-images.githubusercontent.com/68515706/186397886-62d88bc4-54f2-442c-bdfa-d12d5dd4a7b8.png)
- 
+![image](https://user-images.githubusercontent.com/68515706/186418265-e2c46d58-a8dc-434f-bb3e-55c3f4a9521c.png)
+
  
  It will print out whether the target got bypassed or not.
  
