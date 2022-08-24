@@ -22,7 +22,7 @@ When you load the extension for the first time it will open a headers.txt file a
 
 
 
-When you open the Burp Suite again you will see an output like this;
+When you open the Burp Suite again you will see an output like this (or when you unload and reload the extension) ;
 
 ![image](https://user-images.githubusercontent.com/68515706/185059985-f3cf023a-7958-4830-b7f8-29ca606a7991.png)
 
