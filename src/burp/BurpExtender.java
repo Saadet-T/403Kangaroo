@@ -201,7 +201,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab,IContext
 						String[] valueArray = new String[allValues.size() * 2];
 						allValues.toArray(valueArray);
 						
-							for (int j = 0; j <= (allValues.size()); j++) {
+							for (int j = 0; j < (allValues.size()); j++) {
 								IRequestInfo request = this.helpers.analyzeRequest(messageInfo.getHttpService(),
 										messageInfo.getRequest());//Because why not?
 								List<String> newHeaders = request.getHeaders();
