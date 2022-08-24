@@ -169,7 +169,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab,IContext
 		url.toString();
 		if (messageIsRequest) {
 			if(atama==true) {
-			if ((this.callbacks.TOOL_PROXY == toolFlag) || (this.callbacks.TOOL_REPEATER == toolFlag)) {
+			if (this.callbacks.TOOL_PROXY == toolFlag ) {
 				IRequestInfo requestMother = this.helpers.analyzeRequest(messageInfo.getHttpService(),
 						messageInfo.getRequest());//Getting the request information send from proxy tool
 				List<String> motherHeaders = requestMother.getHeaders();//Getting the original headers from proxy request aka mother request
