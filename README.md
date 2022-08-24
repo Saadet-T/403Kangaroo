@@ -41,4 +41,4 @@ There is 2 main problems which may occur and you can get over them with this;
 2.There can be something goes on with the write permisson of the extension then it will give you a path to copy headers.txt and values.txt in given error.
 
 
-(I know that this GUI sucks but also coding a GUI sucks too, I will work on it sometime but truly I don't know when )
+(I know that this GUI sucks but also coding a GUI sucks too, I will work on it sometime but honestly I don't know when )
