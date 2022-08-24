@@ -1,14 +1,16 @@
 # 403Kangaroo
-403/401 bypass tool via certain headers and values (headers.txt,values.txt). 
+403/401 bypass tool via certain headers and values (headers.txt,values.txt). When you load the extension for the first time it will open a headers.txt file and write the given headers in code to txt file and does the same thing for the values with values.txt file. So if you want to add another value or header you can add it to txt files and from then extension will include that values and headers in requests too.
 
-First of all you need to send request from your proxy or repeater tab to extension. And then you need to forward the request from burp suite because until the request was sent from burp suite the extension can't catch the request. 
+USAGE;
+
+First of all you need to send request from your proxy or repeater tab to extension. And then you need to forward or send(you know it depends on whether you use proxy or repeater) the request from burp suite because the extension won't be able to catch the request unless it is sent. 
+
 ![image](https://user-images.githubusercontent.com/68515706/186393150-459518be-010d-4302-bc5c-2beecefb6dc5.png)
 
 ![image](https://user-images.githubusercontent.com/68515706/186393276-1da105b2-1556-4967-a82b-921c872632c2.png)
 
-After that the extension will take the request send it again to confirm whether the response code (403 || 401) or not. Then It will add the headers from headers.txt .
+After that the extension will take the request and send it again to confirm whether the response code (403 || 401) or not. Then It will add the headers and values and send a request for each value .
 
-When you load the extension for the first time it will open a headers.txt file and write the headers in there and does the same thing for values. So if you want to add another value or header you can add it to txt files and from then extension will include that values and headers too.
 
 ![image](https://user-images.githubusercontent.com/68515706/186397972-0b3cbc53-096c-441d-bee9-927a4a4c9020.png)
 ![image](https://user-images.githubusercontent.com/68515706/186397886-62d88bc4-54f2-442c-bdfa-d12d5dd4a7b8.png)
@@ -18,7 +20,6 @@ When you load the extension for the first time it will open a headers.txt file a
  
  
 ![image](https://user-images.githubusercontent.com/68515706/184893331-94704641-090d-4af5-8ec8-61869cba1d12.png)
-
 
 
 When you open the Burp Suite again you will see an output like this (or when you unload and reload the extension) ;
