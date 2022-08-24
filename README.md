@@ -5,14 +5,18 @@ USAGE;
 
 First of all you need to send request from your proxy or repeater tab to extension. And then you need to forward or send(you know it depends on whether you use proxy or repeater) the request from burp suite because the extension won't be able to catch the request unless it is sent. 
 
-![image](https://user-images.githubusercontent.com/68515706/186393150-459518be-010d-4302-bc5c-2beecefb6dc5.png)
+![image](https://user-images.githubusercontent.com/68515706/186407101-dfa0f991-66d7-4f4c-bbc8-d133cc87fc5e.png)
 
-![image](https://user-images.githubusercontent.com/68515706/186393276-1da105b2-1556-4967-a82b-921c872632c2.png)
+![image](https://user-images.githubusercontent.com/68515706/186407201-9a072201-1648-4126-88b8-13366798b6ba.png)
+
+![image](https://user-images.githubusercontent.com/68515706/186407591-2706dd8d-b96a-4d64-a759-3358900fb95b.png)
+
 
 After that the extension will take the request and send it again to confirm whether the response code (403 || 401) or not. Then It will add the headers and values and send a request for each value .
 
 
 ![image](https://user-images.githubusercontent.com/68515706/186397972-0b3cbc53-096c-441d-bee9-927a4a4c9020.png)
+
 ![image](https://user-images.githubusercontent.com/68515706/186397886-62d88bc4-54f2-442c-bdfa-d12d5dd4a7b8.png)
  
  
