@@ -2,17 +2,25 @@
 403/401 bypass tool via certain headers and values (headers.txt,values.txt). 
 When you add .jar to Burp Extender it will open and write 2 txt files in Burp Suites folder. If you wish you can add values and headers as you want in those txt files  , for the later requests 403 Kangaroo will add the values you want in requests too.
 
-This extension basically take the requests sent from proxy tab of Burp and if the request returns 401 or 403 then it takes all of the headers from headers.txt and in a for loop it will take one of the values from values.txt one at a time. 
+First of all you need to send request from your proxy or repeater tab to extension. And then you need to forward the request from burp suite because until the request was sent from burp suite the extension can't catch the request. 
+![image](https://user-images.githubusercontent.com/68515706/186393150-459518be-010d-4302-bc5c-2beecefb6dc5.png)
 
-![image](https://user-images.githubusercontent.com/68515706/184891102-1eeb99df-7b1d-4993-becd-2f5ae4ffea82.png)
+![image](https://user-images.githubusercontent.com/68515706/186393276-1da105b2-1556-4967-a82b-921c872632c2.png)
 
-![image](https://user-images.githubusercontent.com/68515706/184891166-796d11d3-ef90-4d5b-bbfa-6795c83cf65b.png)
+After that the extension will take the request send it again to confirm whether the response code (403 || 401) or not. Then It will add the headers from headers.txt .
+
+When you load the extension for the first time it will open a headers.txt file and write the headers in there and does the same thing for values. So if you want to add another value or header you can add it to txt files and from then extension will include that values and headers too.
+
+![image](https://user-images.githubusercontent.com/68515706/186393455-983bfcd0-c4d7-47b4-8f38-eec98e2f9fad.png)
+
  
  
  It will print out whether the target got bypassed or not.
  
  
 ![image](https://user-images.githubusercontent.com/68515706/184893331-94704641-090d-4af5-8ec8-61869cba1d12.png)
+![image](https://user-images.githubusercontent.com/68515706/186393386-09050b7a-40e6-4c40-ab21-18951aad95bb.png)
+
 
 When you open the Burp Suite again you will see an output like this;
 
