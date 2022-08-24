@@ -44,4 +44,5 @@ There is 2 main problems which may occur and you can get over them with these;
 (I know that this GUI sucks but also coding a GUI sucks too, I will work on it sometime but honestly I don't know when )
 
 //For my one friend who thought above explanation is not formal enough;
+
 (I know current GUI isn't user friendly due to my low experience on GUI design, I will work on this problem in the future)
