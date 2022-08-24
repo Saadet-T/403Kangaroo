@@ -1,6 +1,8 @@
 package burp;
 
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -23,7 +25,7 @@ import javax.swing.SwingUtilities;
 
 import com.kitfox.svg.Font;
 
-public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
+public class BurpExtender implements IBurpExtender, IHttpListener, ITab,IContextMenuFactory {
 
 	private IBurpExtenderCallbacks callbacks;
 	private IExtensionHelpers helpers;
@@ -34,7 +36,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 	private JButton Button;
 	private JTextArea textArea, textArea2,textArea3;
 	private JMenuItem item;
-	private List<JMenuItem> menu;
+	private List<JMenuItem> menuadd;
 	public List<String> deneme = new ArrayList<String>();;
 	boolean atama = false;
 
@@ -45,6 +47,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 		this.helpers = callbacks.getHelpers();
 		this.callbacks.setExtensionName("403Kangaroo");
 		this.callbacks.registerHttpListener(this);
+		this.callbacks.registerContextMenuFactory( this);
 		this.debug = new PrintWriter(callbacks.getStdout(), true);
 		String[] headerswrite = {"X-Forwarded",//headers to write in txt
 	            "X-Forwarded-By",
@@ -142,17 +145,30 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 
 			}
 
-			}});
+			}
+});
 	}
 
-
-	
+	public List<JMenuItem> createMenuItems(IContextMenuInvocation invocation) {
+        List<JMenuItem> menuadd = new ArrayList<JMenuItem>();
+        JMenuItem export = new JMenuItem("Send to 403 Kangaroo");
+        export.addActionListener(new ActionListener() {	
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					atama=true;
+					
+				}
+        } );
+        menuadd.add(export);
+        return menuadd;
+    }
 
 	
 	public void processHttpMessage(int toolFlag, boolean messageIsRequest, IHttpRequestResponse messageInfo) {
 		URL url = messageInfo.getUrl();
 		url.toString();
 		if (messageIsRequest) {
+			if(atama==true) {
 			if (this.callbacks.TOOL_PROXY == toolFlag) {
 				IRequestInfo requestMother = this.helpers.analyzeRequest(messageInfo.getHttpService(),
 						messageInfo.getRequest());//Getting the request information send from proxy tool
@@ -164,8 +180,8 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 				byte[] mother_response = motherResp.getResponse();//getting response
 				String motheResponse = new String(mother_response);//changing bytes to string
 				String[] responseArrayMother = motheResponse.split("\n");//splitting the string line by line
-
-				if (responseArrayMother[0].contains("403") || responseArrayMother[0].contains("401")) {//controlling the first line of the response whether it contains 403 or 401
+				
+				if (responseArrayMother[0].contains("403") || responseArrayMother[0].contains("401")) {//controlling the first line of the request whether it contains 403 or 401
 					
 					try {
 
@@ -201,7 +217,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 						            }
 								byte[] newRequesta = this.helpers.buildHttpMessage(newHeaders, null);
 								//debug.println(new String(newRequest));
-								messageInfo.setRequest(newRequesta);//setting request without headers for after use (I guess i am not sure , i just thought it would work and it worked so i let it rest in peace here)
+								messageInfo.setRequest(newRequesta);//setting request without headers for after use (I guess i don't know i just thought it would work and it worked so i let it rest in peace here)
 								IHttpRequestResponse resp = callbacks.makeHttpRequest(messageInfo.getHttpService(),
 										newRequest);
 								byte[] readme_response = resp.getResponse();
@@ -228,8 +244,10 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 						e.printStackTrace();
 					}
 				}
+				}
 			}
 			}
+		atama=false;
 	}
 
 	@Override
@@ -242,7 +260,6 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab {
 	public Component getUiComponent() {
 
 		return this.panel;
-	}
+	}}
 
 
-}
