@@ -11,8 +11,8 @@ After that the extension will take the request send it again to confirm whether 
 
 When you load the extension for the first time it will open a headers.txt file and write the headers in there and does the same thing for values. So if you want to add another value or header you can add it to txt files and from then extension will include that values and headers too.
 
-![image](https://user-images.githubusercontent.com/68515706/186393455-983bfcd0-c4d7-47b4-8f38-eec98e2f9fad.png)
-![image](https://user-images.githubusercontent.com/68515706/186393386-09050b7a-40e6-4c40-ab21-18951aad95bb.png)
+![image](https://user-images.githubusercontent.com/68515706/186397972-0b3cbc53-096c-441d-bee9-927a4a4c9020.png)
+![image](https://user-images.githubusercontent.com/68515706/186397886-62d88bc4-54f2-442c-bdfa-d12d5dd4a7b8.png)
  
  
  It will print out whether the target got bypassed or not.
