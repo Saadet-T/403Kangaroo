@@ -25,7 +25,7 @@ After that the extension will take the request and send it again to confirm whet
  
 ![image](https://user-images.githubusercontent.com/68515706/184893331-94704641-090d-4af5-8ec8-61869cba1d12.png)
 
-ADDENDUM;
+KNOWN ISSUES;
 
 When you open the Burp Suite again you will see an output like this (or when you unload and reload the extension) ;
 
@@ -41,4 +41,4 @@ There is 2 main problems which may occur and you can get over them with this;
 2.There can be something goes on with the write permisson of the extension then it will give you a path to copy headers.txt and values.txt in given error.
 
 
-(I know that this GUI sucks but also coding a GUI sucks too)
+(I know that this GUI sucks but also coding a GUI sucks too, I will work on it sometime but truly I don't know when )
