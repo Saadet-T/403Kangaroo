@@ -3,15 +3,11 @@
 
 USAGE;
 
-First of all you need to send request from your proxy or repeater tab to extension. And then you need to forward or send(It depends on whether you use proxy or repeater) the request from burp suite because the extension won't be able to catch the request unless it is sent. 
+First of all you need to send request from your proxy tab to extension. And then you need to forward  the request from burp suite proxy because the extension won't be able to catch the request unless it is sent. 
 
 ![image](https://user-images.githubusercontent.com/68515706/186407101-dfa0f991-66d7-4f4c-bbc8-d133cc87fc5e.png)
 
 ![image](https://user-images.githubusercontent.com/68515706/186407201-9a072201-1648-4126-88b8-13366798b6ba.png)
-
-OR
-
-![image](https://user-images.githubusercontent.com/68515706/186407591-2706dd8d-b96a-4d64-a759-3358900fb95b.png)
 
 
 After that the extension will take the request and send it again to confirm whether the response code (403 || 401) or not. Then It will add the headers and values and send a request for each value .
