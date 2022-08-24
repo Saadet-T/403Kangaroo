@@ -1,6 +1,5 @@
 # 403Kangaroo
 403/401 bypass tool via certain headers and values (headers.txt,values.txt). 
-When you add .jar to Burp Extender it will open and write 2 txt files in Burp Suites folder. If you wish you can add values and headers as you want in those txt files  , for the later requests 403 Kangaroo will add the values you want in requests too.
 
 First of all you need to send request from your proxy or repeater tab to extension. And then you need to forward the request from burp suite because until the request was sent from burp suite the extension can't catch the request. 
 ![image](https://user-images.githubusercontent.com/68515706/186393150-459518be-010d-4302-bc5c-2beecefb6dc5.png)
