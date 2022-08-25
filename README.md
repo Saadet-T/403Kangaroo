@@ -10,7 +10,7 @@ First of all you need to send request from your proxy tab to extension. And then
 ![image](https://user-images.githubusercontent.com/68515706/186407201-9a072201-1648-4126-88b8-13366798b6ba.png)
 
 
-After that the extension will take the request and send it again to confirm whether the response code (403 || 401) or not. Then It will add the headers and values and send a request for each value .
+After that the extension will take the request and send it again to confirm whether the response code (403 || 401) or not. Then It will add the headers and values, and send a request for each value .
 
 ![image](https://user-images.githubusercontent.com/68515706/186418063-28cdc3e0-c709-4187-94f2-b0720a41e76e.png)
 
