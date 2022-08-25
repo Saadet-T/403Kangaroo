@@ -18,7 +18,7 @@ After that the extension will take the request and send it again to confirm whet
 ![image](https://user-images.githubusercontent.com/68515706/186418265-e2c46d58-a8dc-434f-bb3e-55c3f4a9521c.png)
 
  
- It will print out whether the target got bypassed or not.
+ It will print out whether the target got bypassed or not.(Based on response value being 200)
  
  
 ![image](https://user-images.githubusercontent.com/68515706/184893331-94704641-090d-4af5-8ec8-61869cba1d12.png)
