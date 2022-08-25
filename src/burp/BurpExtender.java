@@ -120,7 +120,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab,IContext
 					File filevalues = new File("values.txt");
 					String pathvalues = filevalues.getAbsolutePath();
 					if(filevalues.exists()==true) {
-						debug.println(("\nIf the headers.txt in ;\n"+pathvalues+"\n is from or for the extension you can ignore this error.\n However if it is from another thing which doesn't have a relation with this extension \n then you need to transfer this file in another location for this extension to work."));
+						debug.println(("\nIf the values.txt in ;\n"+pathvalues+"\n is from or for the extension you can ignore this error.\n However if it is from another thing which doesn't have a relation with this extension \n then you need to transfer this file in another location for this extension to work."));
 					}
 					if(filevalues.exists()==false) {
 						try {
