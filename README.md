@@ -1,4 +1,7 @@
 # 403Kangaroo
+
+(!! This tool is still under development if you have any issues please don't hesaitate to contact me via linkedin or smth )
+
 403/401 bypass tool via certain headers and values (headers.txt,values.txt). When you load the extension for the first time it will open a headers.txt file and write the given headers in code to txt file and does the same thing for the values with values.txt file. So if you want to add another value or header you can add it to txt files and from then extension will include that values and headers in requests too.
 
 USAGE;
